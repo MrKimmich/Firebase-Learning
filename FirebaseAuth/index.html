@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>SabZ</title>
+</head>
+<body class="grey lighten-3">
+    <!-- NAVBAR -->
+  <nav class="z-depth-0 grey lighten-4">
+    <div class="nav-wrapper container">
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in">
+            <a href="#" class="grey-text" id="logout">Logout</a>
+          </li>
+          <li class="logged-out">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+          </li>
+          <li class="logged-out">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-phone-signup">Phone Sign up</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+
+    <!-- SIGN UP MODAL -->
+    <div id="modal-signup" class="modal">
+        <div class="modal-content">
+          <h4>Sign up</h4><br />
+          <form id="signup-form">
+            <div class="input-field">
+              <input type="email" id="signup-email" required />
+              <label for="signup-email">Email address</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" required />
+              <label for="signup-password">Choose password</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+          </form>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content">
+        <h4>Login</h4><br />
+        <form id="login-form">
+            <div class="input-field">
+                <input type="email" id="login-email" required />
+                <label for="login-email">Email address</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="login-password" required />
+                <label for="login-password">Your password</label>
+            </div>
+            <button class="btn yellow darken-2 z-depth-0">Login</button>
+        </form>
+        </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+            <h4>Account details</h4><br />
+            <div class="account-details"></div>
+        </div>
+    </div>
+
+    <!-- PHONE SIGN UP MODAL -->
+    <div id="modal-phone-signup" class="modal">
+      <div class="modal-content">
+        <label for="phoneNumber">Enter Phone Number</label>
+        <input type="tel" id="phoneNumber" required/>
+        <button class="btn yellow darken-2 z-depth-0" id="sign-in-button" onclick="submitPhoneNumberAuth()">Get OTP</button>
+        <div id="recaptcha-container"></div>
+        <label for="code">Enter OTP</label>
+        <input type="text" id="code" />
+        <button class="btn yellow darken-2 z-depth-0" id="confirm-code" onclick="submitPhoneNumberAuthCode()">Log In</button>  
+      </div>
+  </div>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyCEHZHx5HtWADpiW2UZold6sOpgVwo6G0I",
+        authDomain: "sabz-2ee0a.firebaseapp.com",
+        databaseURL: "https://sabz-2ee0a.firebaseio.com",
+        projectId: "sabz-2ee0a",
+        storageBucket: "sabz-2ee0a.appspot.com",
+        messagingSenderId: "354887757307",
+        appId: "1:354887757307:web:acf7a2019b3a31c7f8af5e",
+        measurementId: "G-43XWRQCLVG"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth()
+    const db = firebase.firestore()
+
+    db.settings({ timestampsInSnapshots: true })
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/index.js"></script>
+
+</body>
+</html>
